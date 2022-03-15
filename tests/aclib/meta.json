@@ -46,6 +46,7 @@
       "SixFile": "doc/manual.six"
     }
   ],
+  "PackageInfoSHA256": "7b399bdbda95f25236c7604f8465c625b0dab4b7768e2e484b20429a0c0b1f71",
   "PackageInfoURL": "https://gap-packages.github.io/aclib/PackageInfo.g",
   "PackageName": "AClib",
   "PackageWWWHome": "https://gap-packages.github.io/aclib/",

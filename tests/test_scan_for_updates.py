@@ -25,7 +25,6 @@ from scan_for_updates import (
     scan_for_one_update,
     scan_for_updates,
     sha256,
-    skip,
 )
 
 
@@ -44,13 +43,6 @@ def reset():
         shutil.rmtree("_archives")
     if exists(".fakefile"):
         os.remove(".fakefile")
-
-
-def test_skip():
-    assert skip(".DS_STORE")
-    assert skip("__file__")
-    assert skip("README.md")
-    assert not skip("digraphs")
 
 
 def test_sha256(ensure_in_tests_dir):
@@ -99,7 +91,7 @@ def test_scan_updates(ensure_in_tests_dir, tmpdir):
     if shutil.which("gap") == None:
         return
     with pytest.raises(SystemExit) as e:
-        scan_for_updates(str(tmpdir))
+        scan_for_updates(str(tmpdir), True)
     # fails because badjson is considered and bad!
     assert e.type == SystemExit
     assert e.value.code == 1
@@ -114,11 +106,13 @@ def test_scan_updates(ensure_in_tests_dir, tmpdir):
 
 
 def test_main(ensure_in_tests_dir):
+    print(os.getcwd())
     if shutil.which("gap") == None:
         return
     shutil.rmtree("badjson")
     os.mkdir("_pkginfos")
     os.system("touch _pkginfos/.fakefile")
+    print(os.getcwd())
     main()
     reset()
 
