@@ -128,7 +128,7 @@ def download_all_archives() -> dict:
 
 @accepts(dict)
 def add_sha256_to_json(archive_name_lookup: dict) -> None:
-    for pkgname in all_packages():
+    for pkgname in sorted(os.listdir(pkginfos_dir)):
         pkg_json_file = metadata_fname(pkgname)
 
         try:
